@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gemini AI Studio</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="app-wrapper">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="logo">
+          <span class="logo-icon">✦</span>
+          <span class="logo-text">Gemini AI Studio</span>
+        </div>
+        <span class="model-badge">gemini-2.5-flash</span>
+      </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="chat">💬 Chat</button>
+      <button class="tab-btn" data-tab="image">🖼️ Image</button>
+      <button class="tab-btn" data-tab="document">📄 Document</button>
+      <button class="tab-btn" data-tab="audio">🎵 Audio</button>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+
+      <!-- Chat Tab -->
+      <section id="tab-chat" class="tab-panel active">
+        <div class="panel-header">
+          <span>Conversational AI Chat</span>
+          <button id="export-btn" class="action-btn" title="Export conversation">⬇ Export</button>
+        </div>
+        <div id="chat-box" class="chat-box"></div>
+        <form id="chat-form" class="input-bar">
+          <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required />
+          <button type="submit" class="send-btn">Send</button>
+        </form>
+      </section>
+
+      <!-- Image Tab -->
+      <section id="tab-image" class="tab-panel">
+        <div class="panel-header"><span>Image Analysis</span></div>
+        <div class="upload-panel">
+          <div class="drop-zone" id="image-drop-zone">
+            <div class="drop-icon">🖼️</div>
+            <p>Drag &amp; drop an image here or <label for="image-file" class="file-label">browse</label></p>
+            <input type="file" id="image-file" accept="image/*" hidden />
+            <p class="drop-hint">Supports JPG, PNG, GIF, WEBP</p>
+          </div>
+          <div id="image-preview-wrap" class="preview-wrap hidden">
+            <img id="image-preview" class="file-preview-img" alt="Preview" />
+            <button class="remove-file-btn" data-target="image">✕ Remove</button>
+          </div>
+          <textarea id="image-prompt" class="prompt-input" placeholder="Optional: custom instructions for the AI..." rows="3"></textarea>
+          <button id="image-submit" class="submit-btn" disabled>Analyze Image</button>
+          <div id="image-result" class="result-box hidden"></div>
+        </div>
+      </section>
+
+      <!-- Document Tab -->
+      <section id="tab-document" class="tab-panel">
+        <div class="panel-header"><span>Document Analysis</span></div>
+        <div class="upload-panel">
+          <div class="drop-zone" id="document-drop-zone">
+            <div class="drop-icon">📄</div>
+            <p>Drag &amp; drop a document here or <label for="document-file" class="file-label">browse</label></p>
+            <input type="file" id="document-file" accept=".pdf,.doc,.docx,.txt" hidden />
+            <p class="drop-hint">Supports PDF, DOC, DOCX, TXT</p>
+          </div>
+          <div id="document-file-info" class="file-info hidden">
+            <span id="document-filename"></span>
+            <button class="remove-file-btn" data-target="document">✕ Remove</button>
+          </div>
+          <textarea id="document-prompt" class="prompt-input" placeholder="Optional: custom instructions for the AI..." rows="3"></textarea>
+          <button id="document-submit" class="submit-btn" disabled>Analyze Document</button>
+          <div id="document-result" class="result-box hidden"></div>
+        </div>
+      </section>
+
+      <!-- Audio Tab -->
+      <section id="tab-audio" class="tab-panel">
+        <div class="panel-header"><span>Audio Transcription</span></div>
+        <div class="upload-panel">
+          <div class="drop-zone" id="audio-drop-zone">
+            <div class="drop-icon">🎵</div>
+            <p>Drag &amp; drop an audio file here or <label for="audio-file" class="file-label">browse</label></p>
+            <input type="file" id="audio-file" accept="audio/*" hidden />
+            <p class="drop-hint">Supports MP3, WAV, M4A, OGG</p>
+          </div>
+          <div id="audio-file-info" class="file-info hidden">
+            <span id="audio-filename"></span>
+            <button class="remove-file-btn" data-target="audio">✕ Remove</button>
+          </div>
+          <textarea id="audio-prompt" class="prompt-input" placeholder="Optional: custom instructions for the AI..." rows="3"></textarea>
+          <button id="audio-submit" class="submit-btn" disabled>Transcribe Audio</button>
+          <div id="audio-result" class="result-box hidden"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
